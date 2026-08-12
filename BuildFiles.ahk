@@ -22,9 +22,9 @@ Script =
 (
 #define PmcName "Pulover's Macro Creator"
 #define PmcVersion "%PMCVer%"
-#define PmcCompany "Rodolfo U. Batista"
-#define PmcURL "http://www.macrocreator.com"
-#define PmcCopyright "Copyright (C) 2012-2016 Rodolfo U. Batista"
+#define PmcCompany "Cloversoft Serviços de Informática Ltda"
+#define PmcURL "https://www.macrocreator.com"
+#define PmcCopyright "Copyright (C) 2012-2021 Cloversoft Serviços de Informática Ltda"
 #define PmcExeName "MacroCreator.exe"
 #define PmcExt "pmc"
 #define WorkDir "%A_ScriptDir%"
@@ -43,42 +43,46 @@ AppPublisherURL={#PmcURL}
 AppCopyright={#PmcCopyright}
 AppSupportURL={#PmcURL}
 AppUpdatesURL={#PmcURL}
-DefaultDirName={pf}\MacroCreator
+WizardStyle=modern
+DisableWelcomePage=no
+DefaultDirName={commonpf}\MacroCreator
 DefaultGroupName={#PmcName}
 AllowNoIcons=yes
 LicenseFile={#WorkDir}\License.txt
 OutputDir={#WorkDir}\Compiled
 OutputBaseFilename=MacroCreator-setup
 WizardImageFile={#WorkDir}\Resources\SetupLogo.bmp
+WizardSmallImageFile={#WorkDir}\Resources\SetupIcon.bmp
 Compression=lzma
 SolidCompression=yes
 ChangesAssociations=yes
 ArchitecturesInstallIn64BitMode=x64
-Uninstallable=not IsTaskSelected('portableinstall')
+Uninstallable=not WizardIsTaskSelected('portableinstall')
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
+Name: "armenian"; MessagesFile: "compiler:Languages\Armenian.isl"
 Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
 Name: "catalan"; MessagesFile: "compiler:Languages\Catalan.isl"
+Name: "corsican"; MessagesFile: "compiler:Languages\Corsican.isl"
 Name: "czech"; MessagesFile: "compiler:Languages\Czech.isl"
 Name: "danish"; MessagesFile: "compiler:Languages\Danish.isl"
 Name: "dutch"; MessagesFile: "compiler:Languages\Dutch.isl"
 Name: "finnish"; MessagesFile: "compiler:Languages\Finnish.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 Name: "german"; MessagesFile: "compiler:Languages\German.isl"
-Name: "greek"; MessagesFile: "compiler:Languages\Greek.isl"
 Name: "hebrew"; MessagesFile: "compiler:Languages\Hebrew.isl"
-Name: "hungarian"; MessagesFile: "compiler:Languages\Hungarian.isl"
+Name: "icelandic"; MessagesFile: "compiler:Languages\Icelandic.isl"
 Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
 Name: "japanese"; MessagesFile: "compiler:Languages\Japanese.isl"
 Name: "norwegian"; MessagesFile: "compiler:Languages\Norwegian.isl"
 Name: "polish"; MessagesFile: "compiler:Languages\Polish.isl"
 Name: "portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"
 Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
-Name: "serbiancyrillic"; MessagesFile: "compiler:Languages\SerbianCyrillic.isl"
-Name: "serbianlatin"; MessagesFile: "compiler:Languages\SerbianLatin.isl"
+Name: "slovak"; MessagesFile: "compiler:Languages\Slovak.isl"
 Name: "slovenian"; MessagesFile: "compiler:Languages\Slovenian.isl"
 Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
+Name: "turkish"; MessagesFile: "compiler:Languages\Turkish.isl"
 Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 [Tasks]
@@ -98,15 +102,17 @@ Root: HKCR; Subkey: "MacroCreatorFile\shell\open\command"; ValueType: string; Va
 [Files]
 Source: "{#WorkDir}\Compiled\MacroCreator-x64.exe"; DestDir: "{app}"; DestName: "MacroCreator.exe"; Flags: ignoreversion; Tasks: install64bit
 Source: "{#WorkDir}\Compiled\MacroCreator.exe"; DestDir: "{app}"; DestName: "MacroCreator.exe"; Flags: ignoreversion; Tasks: install32bit
-Source: "{#WorkDir}\Compiled\SciLexer-x64.dll"; DestDir: "{app}"; DestName: "SciLexer.dll"; Flags: ignoreversion; Tasks: install64bit
-Source: "{#WorkDir}\Compiled\SciLexer-x86.dll"; DestDir: "{app}"; DestName: "SciLexer.dll"; Flags: ignoreversion; Tasks: install32bit
 Source: "{#WorkDir}\Compiled\MacroCreator.ini"; DestDir: "{app}"; Flags: ignoreversion; Tasks: portableinstall
 Source: "{#WorkDir}\Compiled\Resources.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#WorkDir}\Compiled\MacroCreator_Help.chm"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#WorkDir}\Compiled\Lang\*.lang"; DestDir: "{userappdata}\MacroCreator\Lang"; Flags: ignoreversion; Tasks: not portableinstall
-Source: "{#WorkDir}\Compiled\Lang\*.lang"; DestDir: "{app}\Lang"; Flags: ignoreversion; Tasks: portableinstall
 Source: "{#WorkDir}\Compiled\Demo.pmc"; DestDir: "{userappdata}\MacroCreator"; Flags: ignoreversion; Tasks: not portableinstall
 Source: "{#WorkDir}\Compiled\Demo.pmc"; DestDir: "{app}"; Flags: ignoreversion; Tasks: portableinstall
+Source: "{#WorkDir}\Bin\leptonica_util\*.*"; DestDir: "{app}\Bin\leptonica_util"; Flags: ignoreversion
+Source: "{#WorkDir}\Bin\tesseract\tesseract.exe"; DestDir: "{app}\Bin\tesseract"; Flags: ignoreversion
+Source: "{#WorkDir}\Bin\tesseract\tessdata_best\eng.traineddata"; DestDir: "{app}\Bin\tesseract\tessdata_best"; Flags: ignoreversion; Tasks: portableinstall
+Source: "{#WorkDir}\Bin\tesseract\tessdata_fast\eng.traineddata"; DestDir: "{app}\Bin\tesseract\tessdata_fast"; Flags: ignoreversion; Tasks: portableinstall
+Source: "{#WorkDir}\Bin\tesseract\tessdata_best\eng.traineddata"; DestDir: "{userappdata}\MacroCreator\Bin\tesseract\tessdata_best"; Flags: ignoreversion; Tasks: not portableinstall
+Source: "{#WorkDir}\Bin\tesseract\tessdata_fast\eng.traineddata"; DestDir: "{userappdata}\MacroCreator\Bin\tesseract\tessdata_fast"; Flags: ignoreversion; Tasks: not portableinstall
 %CNHelp%
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
