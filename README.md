@@ -15,4 +15,5 @@ Remove compact and best-fit layouts, keeping only the default layout.
 Remove small icons.  
 Remove welcome page and daily tips.  
 Move bottom controls to the top.
+
 SciLexer.dll is no longer needed
